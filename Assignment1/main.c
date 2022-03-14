@@ -21,7 +21,6 @@ unsigned short int adc (void);
 static int adc_open(struct inode *i,struct file *f)			// open system call
 {
 	printk(KERN_INFO "\n ADC OPENED\n ");
-
 	return 0;
 }
 
