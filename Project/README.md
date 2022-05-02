@@ -38,4 +38,27 @@ Besides this we have to setup the Kernel source as mentioned in the pdf:
 
 # Steps to run the device driver code
 
+### step 1: First make the connections and check if i2c slave is getting detected 
 
+` i2cdetect -y 1`
+![alt text](https://i.imgur.com/Rvu4vNy.png)
+
+### Step 2: Making and inserting modules
+
+`sudo make`
+  to make kernel objects
+  
+  ![alt text](https://i.imgur.com/8lISCvH.png)
+  
+`sudo modprobe i2c-gpio`
+  To take care of dependencies 
+  
+`sudo insmod driver_bus.ko`
+  To insert kernel space module for I2C adapter.
+  
+`sudo insmod driver_client.ko`
+  To insert kernel space module for I2C client and GPIO subsystem.
+  ![alt text](https://i.imgur.com/GQlKAC6.png)
+  
+  ![alt text](https://i.imgur.com/c8Z0R3M.png)
+  ![alt text](https://i.imgur.com/0eeQd1W.png)
