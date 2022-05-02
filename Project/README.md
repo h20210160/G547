@@ -62,3 +62,6 @@ Besides this we have to setup the Kernel source as mentioned in the pdf:
   
   ![alt text](https://i.imgur.com/c8Z0R3M.png)
   ![alt text](https://i.imgur.com/0eeQd1W.png)
+  ### Arduino Serial monitor
+  ![alt text](https://i.imgur.com/PC1NaNa.png)
+  
