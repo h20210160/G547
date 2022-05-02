@@ -17,8 +17,25 @@ Now master sends an 8 bits data to slave or slave sends data to master depending
 ### Stop Condition:
 Once all the data frames send, the master will generate a Stop condition and saying that I’m done with a transfer.
 
-In our project we are going to set up the i2c communication between Raspberry PI 3 (Master )and an Arduino (Slave).
+**In our project we are going to set up the i2c communication between Raspberry PI 3 (Master )and an Arduino (Slave).**
 
 # Hardware Schematics:
 
 ![alt text](https://miro.medium.com/max/1400/1*8pAaHVNdR9k7IBE5CyEFIg.png)
+
+# Setting Up Raspberry Pi
+
+First we have to enable the I2C communication on raspberry pi
+
+`sudo raspi-config`
+![alt text](https://i.imgur.com/hYt20nu.png)
+
+In the Interface options, we have to Enable automatic loading of I2C kernel module
+![alt text](https://i.imgur.com/p7g5f5H.png)
+
+Besides this we have to setup the Kernel source as mentioned in the pdf:
+![alt text](https://i.imgur.com/5OURI8F.png)
+
+# Steps to run the device driver code
+
+
