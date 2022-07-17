@@ -1,7 +1,8 @@
 #include <Wire.h>
-#define SLAVE_ADDRESS 0x08
-unsigned char c;
-unsigned int pin,mode;
+#define SLAVE_ADDRESS 0x09
+
+
+unsigned char c,pin,mode;
 void setup()
 {
   Serial.begin(9600); // open the serial port at 9600 bps:
@@ -18,38 +19,51 @@ void loop()
 void receiveEvent(int howMany)
 {
   Serial.println("Start of While Loop");
-  int counter = 0;
+
  
-while (Wire.available()>0) // loop through all but the last
+if (Wire.available()>0) 
   {
     
     Serial.println("Recieving Event Start\n");
      
-              c = Wire.read();// receive byte as a character
-              Serial.print(c);
-              Serial.print(" \npin\n");
-              int x=(int)c;
-              if(x==120)
-              {
-                pinMode(12,OUTPUT);
-                digitalWrite(12,HIGH);
-                digitalWrite(13,HIGH);
-              }
-              else
-              {
-                pinMode(12,OUTPUT);
-                digitalWrite(12,LOW);
-                digitalWrite(13,LOW);
-              }
+          c = Wire.read();// receive byte as a character
+          int x=(int)c;
+          pin=x/10;
+          Serial.print("\n pin :");
+          Serial.print(pin);
+    
+          mode=x%10;
+          Serial.print("\n mode :");
+          Serial.print(mode);
+          
+          switch(mode)
+          {
+              case 0: digitalWrite(pin,LOW);
+                      break;
+              case 1: digitalWrite(pin,HIGH);
+                      break;
+              case 2: pinMode(pin,OUTPUT);
+                      break;
+              case 3: pinMode(pin,INPUT);
+                      break;
+              case 4:break;
+          }
+         
     Serial.println("\nRecieving Event End");
-    counter++;
+   
   }
-  //Serial.println(counter);
-  //unsigned int x = Wire.read();    // receive byte as an integer
-  //Serial.println(x);
+   Serial.println("End of while loop.");
+  
 }
 void sendEvent()
 {
-  Serial.print("send data\n");
+  Serial.print("sending event start\n");
+  mode=digitalRead(pin);
+  
   Wire.write(mode);
+  Serial.print("\n pin :");
+          Serial.print(pin);
+           Serial.print("\n mode :");
+          Serial.print(mode);
+   Serial.print("sending event end\n");
 }
