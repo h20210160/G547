@@ -1,4 +1,4 @@
-obj-m := driver_bus.o driver_client.o
+obj-m := UNO_driver.o
 
 all:
 	$ make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
